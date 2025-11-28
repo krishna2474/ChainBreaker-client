@@ -1,4 +1,5 @@
 import { Shield, AlertCircle, CheckCircle } from "lucide-react";
+import { MessageCircle, Send } from "lucide-react";
 import Button from "./ui/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -36,10 +37,10 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="primary" onClick={() => setModalOpen(true)}>
+              <Button variant="primary" icon={MessageCircle} onClick={() => setModalOpen(true)}>
                 Add to WhatsApp
               </Button>
-              <Button variant="secondary" onClick={() => navigate("/contact")}>
+              <Button variant="secondary" icon={Send} onClick={() => navigate("/contact")}>
                 Add to Telegram
               </Button>
             </div>

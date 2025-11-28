@@ -1,14 +1,9 @@
-import { useState } from "react";
-import { MessageCircle, Send } from "lucide-react";
 import SectionTitle from "./ui/SectionTitle";
-import Button from "./ui/Button";
-import ComingSoonModal from "./ui/ComingSoonModal";
 
 const Integration = () => {
-  const [modalOpen, setModalOpen] = useState(false);
   return (
     <>
-      <section id="how-it-works" className="py-20 bg-white dark:bg-slate-800">
+      <section id="how-it-works" className="py-10 bg-white dark:bg-slate-800">
         <div className="max-w-7xl mx-auto px-4">
           <SectionTitle subtitle="How It Works" title="Simple 3-Step Setup" />
 
@@ -52,26 +47,8 @@ const Integration = () => {
               </p>
             </div>
           </div>
-
-          <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
-            <Button
-              variant="primary"
-              icon={MessageCircle}
-              onClick={() => setModalOpen(true)}
-            >
-              Add to WhatsApp
-            </Button>
-            <Button variant="secondary" icon={Send}>
-              Add to Telegram
-            </Button>
-          </div>
         </div>
       </section>
-      <ComingSoonModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        feature="WhatsApp"
-      />
     </>
   );
 };

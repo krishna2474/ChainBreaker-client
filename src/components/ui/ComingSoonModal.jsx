@@ -81,7 +81,7 @@ const ComingSoonModal = ({ isOpen, onClose, feature }) => {
                 }}
                 className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-500/30"
               >
-                <Rocket className="text-white" size={32} />
+                <MessageCircle className="text-white" size={32} />
               </motion.div>
 
               {/* Content */}

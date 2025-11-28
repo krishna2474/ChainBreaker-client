@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Moon, Sun } from "lucide-react";
+import { Menu, X, Moon, Sun, LogIn } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "./ui/Button";
 import { useTheme } from "../context/ThemeContext";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { isDark, toggleTheme } = useTheme();
@@ -48,6 +50,7 @@ const Navbar = () => {
               className="flex items-center space-x-2 cursor-pointer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => navigate("/")}
             >
               <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center font-bold text-white shadow-lg">
                 CB
@@ -58,11 +61,15 @@ const Navbar = () => {
             </motion.div>
 
             {/* Desktop Menu */}
-            <div className="hidden lg:flex items-center space-x-8">
+            <div className="hidden lg:flex items-center space-x-6">
               {menuItems.map((item) => (
                 <a
                   key={item}
-                  href={`#${item.toLowerCase().replace(/\s/g, "-")}`}
+                  href={
+                    item === "Contact"
+                      ? "/contact"
+                      : `#${item.toLowerCase().replace(/\s/g, "-")}`
+                  }
                   className="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
                 >
                   {item}
@@ -80,7 +87,16 @@ const Navbar = () => {
                   <Moon size={20} className="text-slate-700" />
                 )}
               </motion.button>
-              <Button variant="primary">Try Demo</Button>
+              <Button variant="primary" onClick={() => navigate("/demo")}>
+                Try Demo
+              </Button>
+              <Button
+                variant="secondary"
+                icon={LogIn}
+                onClick={() => navigate("/app")}
+              >
+                Sign In
+              </Button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -135,7 +151,11 @@ const Navbar = () => {
                   {menuItems.map((item, index) => (
                     <motion.a
                       key={item}
-                      href={`#${item.toLowerCase().replace(/\s/g, "-")}`}
+                      href={
+                        item === "Contact"
+                          ? "/contact"
+                          : `#${item.toLowerCase().replace(/\s/g, "-")}`
+                      }
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 }}
@@ -169,14 +189,34 @@ const Navbar = () => {
                   </button>
                 </motion.div>
 
-                {/* CTA Button */}
+                {/* CTA Buttons */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="mt-6"
+                  className="mt-6 space-y-3"
                 >
-                  <Button variant="primary" onClick={() => window.location.href = '/demo'}>Try Demo</Button>
+                  <Button
+                    variant="secondary"
+                    icon={LogIn}
+                    className="w-full"
+                    onClick={() => {
+                      setIsOpen(false);
+                      navigate("/app");
+                    }}
+                  >
+                    Sign In
+                  </Button>
+                  <Button
+                    variant="primary"
+                    className="w-full"
+                    onClick={() => {
+                      setIsOpen(false);
+                      navigate("/demo");
+                    }}
+                  >
+                    Try Demo
+                  </Button>
                 </motion.div>
               </div>
             </motion.div>

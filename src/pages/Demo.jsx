@@ -6,12 +6,16 @@ import {
   AlertCircle,
   CheckCircle,
   Shield,
+  Moon,
+  Sun,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Button from "../components/ui/Button";
+import { useTheme } from "../context/ThemeContext";
 
 const Demo = () => {
   const navigate = useNavigate();
+  const { isDark, toggleTheme } = useTheme();
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([
     {
@@ -75,23 +79,46 @@ const Demo = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
-      {/* Header */}
+      {/* Header with Back Button and Theme Toggle */}
       <div className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-10">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.05, x: -5 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => navigate("/")}
-            className="flex items-center space-x-2 text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition"
+            className="flex items-center space-x-2 px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-all group"
           >
-            <ArrowLeft size={20} />
-            <span>Back to Home</span>
-          </button>
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center">
-              <Shield className="text-white" size={16} />
-            </div>
-            <span className="font-bold text-slate-900 dark:text-white">
-              ChainBreaker Demo
+            <ArrowLeft
+              size={18}
+              className="text-slate-600 dark:text-slate-400 group-hover:-translate-x-1 transition-transform"
+            />
+            <span className="text-slate-700 dark:text-slate-300 font-medium">
+              Back
             </span>
+          </motion.button>
+
+          <div className="flex items-center space-x-3">
+            <motion.button
+              whileHover={{ scale: 1.1, rotate: 180 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={toggleTheme}
+              className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"
+            >
+              {isDark ? (
+                <Sun size={20} className="text-yellow-500" />
+              ) : (
+                <Moon size={20} className="text-slate-700" />
+              )}
+            </motion.button>
+
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center">
+                <Shield className="text-white" size={16} />
+              </div>
+              <span className="font-bold text-slate-900 dark:text-white hidden sm:inline">
+                ChainBreaker Demo
+              </span>
+            </div>
           </div>
         </div>
       </div>
