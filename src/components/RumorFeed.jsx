@@ -2,41 +2,58 @@ import { AlertTriangle, CheckCircle, Clock } from "lucide-react";
 
 export default function RumorFeed({ rumors }) {
   if (!rumors || rumors.length === 0) {
-    return <div className="text-gray-500 text-center p-8">No rumors detected yet. Start chatting with the bot!</div>;
+    return (
+      <div className="bg-slate-800 rounded-xl p-6 border border-slate-700">
+        <h3 className="text-lg font-semibold text-white mb-4">Recent Rumors</h3>
+        <p className="text-slate-400">No rumors detected yet.</p>
+      </div>
+    );
   }
 
   return (
-    <div className="overflow-hidden">
-      <table className="min-w-full text-left text-sm">
-        <thead className="bg-gray-50 border-b border-gray-200 text-gray-500">
-          <tr>
-            <th className="px-6 py-3 font-medium">Status</th>
-            <th className="px-6 py-3 font-medium">Message Content</th>
-            <th className="px-6 py-3 font-medium">Source</th>
-            <th className="px-6 py-3 font-medium">Time</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-gray-100">
-          {rumors.map((rumor) => (
-            <tr key={rumor.id} className="hover:bg-gray-50 transition-colors">
-              <td className="px-6 py-4">
-                {rumor.status === 'verified_fake' && <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800"><AlertTriangle size={12}/> Fake</span>}
-                {rumor.status === 'pending_verification' && <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800"><Clock size={12}/> Analyzing</span>}
-                {rumor.status === 'safe' && <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800"><CheckCircle size={12}/> Safe</span>}
-              </td>
-              <td className="px-6 py-4 max-w-xs truncate text-gray-900 font-medium">
-                {rumor.content}
-              </td>
-              <td className="px-6 py-4 text-gray-500">
-                Group {rumor.source_group_id.slice(-4)}
-              </td>
-              <td className="px-6 py-4 text-gray-400">
-                {new Date(rumor.created_at).toLocaleTimeString()}
-              </td>
+    <div className="bg-slate-800 rounded-xl p-6 border border-slate-700">
+      <h3 className="text-lg font-semibold text-white mb-4">Recent Rumors</h3>
+      <div className="overflow-x-auto">
+        <table className="w-full text-left text-sm">
+          <thead className="text-slate-400 border-b border-slate-700">
+            <tr>
+              <th className="pb-2">Status</th>
+              <th className="pb-2">Message Content</th>
+              <th className="pb-2">Source</th>
+              <th className="pb-2">Time</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="text-slate-300">
+            {rumors.map((rumor, idx) => (
+              <tr key={idx} className="border-b border-slate-700/50">
+                <td className="py-3">
+                  {rumor.status === 'verified_fake' && (
+                    <span className="flex items-center space-x-1 text-red-400">
+                      <AlertTriangle size={16} />
+                      <span>Fake</span>
+                    </span>
+                  )}
+                  {rumor.status === 'verified_real' && (
+                    <span className="flex items-center space-x-1 text-green-400">
+                      <CheckCircle size={16} />
+                      <span>Real</span>
+                    </span>
+                  )}
+                  {rumor.status === 'pending' && (
+                    <span className="flex items-center space-x-1 text-yellow-400">
+                      <Clock size={16} />
+                      <span>Pending</span>
+                    </span>
+                  )}
+                </td>
+                <td className="py-3">{rumor.content}</td>
+                <td className="py-3">Group {rumor.source_group_id?.slice(-4) || 'N/A'}</td>
+                <td className="py-3">{new Date(rumor.created_at).toLocaleTimeString()}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

@@ -1,32 +1,21 @@
-import { useState, useEffect } from 'react'
-import { supabase } from './config/supabaseClient'
-import Auth from './components/Auth'
-import Dashboard from './components/Dashboard'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import AppPage from "./pages/AppPage";
+import Demo from "./pages/Demo";
+import Contact from "./pages/Contact";
 
-function App() {
-  const [session, setSession] = useState(null)
 
-  useEffect(() => {
-    // 1. Check active session on load
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
-    })
-
-    // 2. Listen for login/logout events
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-
-    return () => subscription.unsubscribe()
-  }, [])
-
+const App = () => {
   return (
-    <div>
-      {!session ? <Auth /> : <Dashboard session={session} />}
-    </div>
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/app" element={<AppPage />} />
+        <Route path="/demo" element={<Demo />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </Router>
+  );
+};
 
-export default App
+export default App;

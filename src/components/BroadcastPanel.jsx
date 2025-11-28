@@ -8,9 +8,7 @@ export default function BroadcastPanel({ session }) {
   const handleBroadcast = async () => {
     setSending(true);
     try {
-      // Fetch all groups first (In real app, select specific ones)
-      // For Hackathon: We just blast everyone
-      const groupsRes = await fetch('http://127.0.0.1:4000/api/dashboard/groups'); // Need this endpoint
+      const groupsRes = await fetch('http://127.0.0.1:4000/api/dashboard/groups');
       const groups = await groupsRes.json();
       const groupIds = groups.map(g => g.chat_id);
 
@@ -19,7 +17,7 @@ export default function BroadcastPanel({ session }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message, groupIds })
       });
-      
+
       alert("Broadcast Sent Successfully!");
       setMessage("");
     } catch (err) {
@@ -29,29 +27,27 @@ export default function BroadcastPanel({ session }) {
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-      <div className="flex items-center gap-3 mb-4 text-gray-900">
-        <div className="p-2 bg-indigo-50 text-indigo-600 rounded-lg">
-          <Users size={20} />
-        </div>
-        <h3 className="font-semibold">Global Broadcast</h3>
+    <div className="bg-slate-800 rounded-xl p-6 border border-slate-700">
+      <div className="flex items-center space-x-2 mb-4">
+        <Users className="text-cyan-500" size={20} />
+        <h3 className="text-lg font-semibold text-white">Broadcast Message</h3>
       </div>
       
       <textarea
-        className="w-full p-3 border border-gray-200 rounded-lg mb-4 text-sm focus:ring-2 focus:ring-indigo-500 outline-none"
-        rows="3"
-        placeholder="Type an alert message to send to ALL connected groups..."
         value={message}
-        onChange={e => setMessage(e.target.value)}
+        onChange={(e) => setMessage(e.target.value)}
+        placeholder="Type your broadcast message..."
+        className="w-full bg-slate-900 border border-slate-600 rounded-lg p-3 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 mb-4"
+        rows={4}
       />
       
       <button
         onClick={handleBroadcast}
-        disabled={sending || !message}
-        className="w-full py-2.5 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+        disabled={sending || !message.trim()}
+        className="w-full bg-cyan-500 hover:bg-cyan-400 disabled:bg-slate-600 text-slate-900 font-medium py-2 px-4 rounded-lg flex items-center justify-center space-x-2 transition"
       >
-        <Send size={16} />
-        {sending ? 'Broadcasting...' : 'Send Alert to Network'}
+        <Send size={18} />
+        <span>{sending ? 'Sending...' : 'Send Broadcast'}</span>
       </button>
     </div>
   );
