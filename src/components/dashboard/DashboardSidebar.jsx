@@ -8,6 +8,7 @@ import {
   BarChart3,
   Settings,
 } from "lucide-react";
+import Logo from "../ui/Logo";
 
 const DashboardSidebar = ({ isOpen, activeView, setActiveView, onClose }) => {
   const menuItems = [
@@ -45,8 +46,8 @@ const DashboardSidebar = ({ isOpen, activeView, setActiveView, onClose }) => {
           {/* Logo */}
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center font-bold text-white">
-                CB
+              <div className="w-11 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center font-bold text-white">
+                <Logo size="xxl" />
               </div>
               <div>
                 <h2 className="font-bold text-slate-900 dark:text-white">

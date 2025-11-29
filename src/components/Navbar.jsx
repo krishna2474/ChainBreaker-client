@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Button from "./ui/Button";
 import { useTheme } from "../context/ThemeContext";
 import { useNavigate } from "react-router-dom";
+import Logo from './ui/Logo';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ const Navbar = () => {
               onClick={() => navigate("/")}
             >
               <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center font-bold text-white shadow-lg">
-                CB
+              <Logo size="xxl" />
               </div>
               <span className="text-xl font-bold text-slate-900 dark:text-white">
                 ChainBreaker

@@ -4,6 +4,7 @@ import Button from "./ui/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ComingSoonModal from "./ui/ComingSoonModal";
+import Logo from './ui/Logo';
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -37,10 +38,18 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="primary" icon={MessageCircle} onClick={() => setModalOpen(true)}>
+              <Button
+                variant="primary"
+                icon={MessageCircle}
+                onClick={() => setModalOpen(true)}
+              >
                 Add to WhatsApp
               </Button>
-              <Button variant="secondary" icon={Send} onClick={() => navigate("/contact")}>
+              <Button
+                variant="secondary"
+                icon={Send}
+                onClick={() => navigate("/contact")}
+              >
                 Add to Telegram
               </Button>
             </div>
@@ -49,7 +58,7 @@ const Hero = () => {
             <div className="mt-16 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 text-left max-w-3xl mx-auto shadow-2xl">
               <div className="flex items-center space-x-2 mb-6 pb-4 border-b dark:border-slate-800">
                 <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center">
-                  <Shield className="text-white" size={20} />
+                  <Logo size="xxl" className="mx-auto" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-slate-900 dark:text-white">

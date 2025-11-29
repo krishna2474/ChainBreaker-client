@@ -12,6 +12,7 @@ import {
 import { motion } from "framer-motion";
 import Button from "../components/ui/Button";
 import { useTheme } from "../context/ThemeContext";
+import Logo from "../components/ui/Logo";
 
 const Demo = () => {
   const navigate = useNavigate();
@@ -113,7 +114,7 @@ const Demo = () => {
 
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center">
-                <Shield className="text-white" size={16} />
+                <Logo size="md" />
               </div>
               <span className="font-bold text-slate-900 dark:text-white hidden sm:inline">
                 ChainBreaker Demo
@@ -155,7 +156,7 @@ const Demo = () => {
           {/* Chat Header */}
           <div className="bg-gradient-to-r from-blue-500 to-indigo-600 p-4 flex items-center space-x-3">
             <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-              <Shield className="text-white" size={20} />
+              <Logo size="md" />
             </div>
             <div>
               <h3 className="font-semibold text-white">ChainBreaker Bot</h3>

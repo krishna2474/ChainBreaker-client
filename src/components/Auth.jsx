@@ -12,10 +12,12 @@ import {
   AlertCircle,
   CheckCircle,
   ArrowLeft,
-  Moon, Sun
+  Moon,
+  Sun,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
+import Logo from './ui/Logo';
 
 export default function Auth() {
   const navigate = useNavigate();
@@ -190,8 +192,8 @@ export default function Auth() {
         {/* Header */}
         <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-8 text-center">
           <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center font-bold text-blue-600 text-xl">
-              CB
+            <div className="w-11 h-11 bg-white rounded-xl flex items-center justify-center font-bold text-blue-600 text-xl">
+              <Logo size="xxl"/>
             </div>
           </div>
           <h1 className="text-2xl font-bold text-white mb-2">ChainBreaker</h1>

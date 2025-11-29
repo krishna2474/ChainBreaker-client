@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { supabase } from "../../config/supabaseClient";
 import { useTheme } from "../../context/ThemeContext";
+import Logo from "../ui/Logo";
 
 const DashboardHeader = ({ session, onMenuClick, sidebarOpen }) => {
   const { isDark, toggleTheme } = useTheme();
@@ -46,16 +47,10 @@ const DashboardHeader = ({ session, onMenuClick, sidebarOpen }) => {
           </motion.button>
 
           <div className="hidden sm:flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center font-bold text-white">
-              CB
-            </div>
             <div>
               <h2 className="font-bold text-slate-900 dark:text-white">
-                ChainBreaker
-              </h2>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
                 Detection Dashboard
-              </p>
+              </h2>
             </div>
           </div>
         </div>

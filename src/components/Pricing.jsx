@@ -27,8 +27,8 @@ const Pricing = () => {
     },
     {
       name: "Organization",
-      monthlyPrice: "₹2,999",
-      yearlyPrice: "₹29,999",
+      monthlyPrice: "₹1,999",
+      yearlyPrice: "₹19,999",
       period: billingCycle === "monthly" ? "/mo" : "/year",
       features: [
         "Unlimited Groups",
