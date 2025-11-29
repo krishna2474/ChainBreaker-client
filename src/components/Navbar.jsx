@@ -93,7 +93,7 @@ const Navbar = () => {
               <Button
                 variant="secondary"
                 icon={LogIn}
-                onClick={() => navigate("/app")}
+                onClick={() => navigate("/dashboard")}
               >
                 Sign In
               </Button>
